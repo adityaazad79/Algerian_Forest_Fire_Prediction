@@ -1,25 +1,80 @@
 <html>
+   <head>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
 <body>
-    <div class="login">
-       <h1>FWI Prediction</h1>
-   
-        <!-- Main Input For Receiving Query to our ML -->
-       <form action="{{ url_for('predict_datapoint')}}" method="post">
-         <input type="text" name="Temperature" placeholder="Temperature" required="required" /><br>
-           <input type="text" name="RH" placeholder="RH" required="required" /><br>
-           <input type="text" name="Ws" placeholder="Ws" required="required" /><br>
-           <input type="text" name="Rain" placeholder="Rain" required="required" /><br>
-           <input type="text" name="FFMC" placeholder="FFMC" required="required" /><br>
-           <input type="text" name="DMC" placeholder="DMC" required="required" /><br>
-           <input type="text" name="ISI" placeholder="ISI" required="required" /><br>
-           <input type="text" name="Classes" placeholder="Classes" required="required" /><br>
-           <input type="text" name="Region" placeholder="Region" required="required" /><br>
-   
-   
-           <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-       </form>
+   <div class="container">
+   <h1 class="text-center">FWI Prediction</h1>
+   <form action="{{ url_for('predict_datapoint')}}" method="post">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="text" name="Temperature" placeholder="Temperature" class="form-control" required="required" />
+        </div>
+        <div class="form-group col-md-6">
+          <input type="text" name="RH" placeholder="RH"class="form-control"  required="required" />
+        </div>
+      </div>
+      <div class="form-row">
+      <div class="form-group col-md-6">
+        <input type="text" name="Ws" placeholder="Ws" class="form-control" required="required" />
+      </div>
+      <div class="form-group col-md-6">
+        <input type="text" name="Rain" placeholder="Rain"class="form-control"  required="required" />
+      </div>
+   </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <input type="text" name="FFMC" placeholder="FFMC" class="form-control" required="required" />
+        </div>
+        <div class="form-group col-md-6">
+          <input type="text" name="DMC" placeholder="DMC" class="form-control" required="required" />
+        </div>
+        </div>
+        <div class="form-row">
+        <div class="form-group col-md-4">
+          <input type="text" name="ISI" placeholder="ISI" class="form-control"  required="required" />
+        </div>
+
+      <div class="form-group col-md-4">
+          <input type="text" name="Classes" placeholder="Classes" class="form-control" required="required" />
+      </div>
+      <div class="form-group col-md-4">
+         <input type="text" class="form-control" name="Region" placeholder="Region" required="required" />
+       </div>
+      </div>
+       <div class="bt">
+       <div class="text-center box"><button type="submit" class="btn btn-primary">Predict</button></div>
+      </div>
+
+    </form>
+   {% if result|length >=1  %}
     <h2>
        THE FWI prediction is {{result}}
     </h2>
+    {% endif %}
+   </div>
+   <style>
+      .bt {
+         display: flex;
+         text-align: center;
+         width: 100%;
+         align-items: center;
+         justify-content: center;
+      }
+      .box{
+         width: 30%;
+      }
+      .btn {
+         width: 100%;
+      }
+      body{
+         background-image: url("{{ url_for('static', filename = 'img_1.jpg') }}");
+         background-repeat: no-repeat;
+         background-size: cover;
+      }
+   </style>
    <body>
 </html>

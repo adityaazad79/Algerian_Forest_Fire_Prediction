@@ -51,9 +51,11 @@
 
     </form>
    {% if result|length >=1  %}
+   <div id="result" >
     <h2>
        THE FWI prediction is {{result}}
     </h2>
+  </div>
     {% endif %}
    </div>
    <style>
@@ -74,6 +76,10 @@
          background-image: url("{{ url_for('static', filename = 'img_1.jpg') }}");
          background-repeat: no-repeat;
          background-size: cover;
+      }
+      #result{
+        border-color:red;
+        background-color: white;
       }
    </style>
    <body>
